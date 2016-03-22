@@ -20,20 +20,20 @@ public class Solution {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         List<Integer> com = new ArrayList<Integer>();
-        combineHelper(result, com, 1, n, 0, k);
+        combineHelper(result, com, 1, n, k);
         return result;
     }
     
-    public void combineHelper(List<List<Integer>> result, List<Integer> com, int location, int n, int level, int k) {
-        if (level == k) {
-            result.add(com);
+    public void combineHelper(List<List<Integer>> result, List<Integer> com, int location, int n, int k) {
+        if (k == 0) {
+            result.add(new ArrayList<Integer>(com)); // create new instance
             return;
         }
         
         for (int i = location; i <= n; i++) {
-            List<Integer> temp = new ArrayList<Integer>(com);
-            temp.add(i);
-            combineHelper(result, temp, i + 1, n, level + 1, k);
+            com.add(i);
+            combineHelper(result, com, i + 1, n, k - 1);
+            com.remove(com.size() - 1);
         }
     }
 }
