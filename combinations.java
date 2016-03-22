@@ -30,7 +30,7 @@ public class Solution {
             return;
         }
         
-        for (int i = location; i <= n; i++) {
+        for (int i = location; i <= n - k + 1; i++) {
             com.add(i);
             combineHelper(result, com, i + 1, n, k - 1);
             com.remove(com.size() - 1);
