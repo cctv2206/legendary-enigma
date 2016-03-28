@@ -35,3 +35,19 @@ public class Solution {
         return result;
     }
 }
+
+
+public class Solution {
+    public List<String> findRepeatedDnaSequences(String s) {
+        Set<String> result = new HashSet<String>();
+        Set<String> dnaSet = new HashSet<String>();
+        
+        for (int i = 0; i <= s.length() - 10; i++) {
+            String subString = s.substring(i, i + 10);
+            if (!dnaSet.add(subString)) {
+                result.add(subString);
+            }
+        }
+        return new ArrayList<String>(result);
+    }
+}
