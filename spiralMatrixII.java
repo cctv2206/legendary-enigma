@@ -65,3 +65,22 @@ public class Solution {
         
     }
 }
+
+
+public class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] result = new int[n][n];
+        int start = 0;
+        int end = n - 1;
+        int num = 1;
+        while (start <= end) {
+            for (int i = start; i <= end; i++) result[start][i] = num++;
+            for (int i = start + 1; i <= end; i++) result[i][end] = num++;
+            for (int i = end - 1; i >= start; i--) result[end][i] = num++;
+            for (int i = end - 1; i >= start + 1; i--) result[i][start] = num++;
+            start++;
+            end--;
+        }
+        return result;
+    }
+}
