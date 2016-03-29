@@ -98,3 +98,60 @@ public class Solution {
         return sum;
     }
 }
+
+
+public class Solution {
+    public void gameOfLife(int[][] board) {
+        int n = board.length;
+        if (n == 0) {
+            return;
+        }
+        int m = board[0].length;
+        if (m == 0) {
+            return;
+        }
+        
+    
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                gameHelper(board, i, j);
+            }
+        }
+        
+        // shift bit
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                board[i][j] >>= 1;
+            }
+        }
+        
+    }
+    
+    public void gameHelper(int[][] board, int i, int j) {
+        int lives = count(board, i, j);
+        
+        if (board[i][j] == 1) { // 01
+            if (lives == 2 || lives == 3) { // 2, 3
+                board[i][j] = 3; // 01 -> 11
+            }
+        } else { // dead
+            if (lives == 3) {
+                board[i][j] = 2; // 00 -> 10
+            }
+        }
+    }
+    
+    public int count(int[][] board, int i, int j) {
+        int sum = 0;
+        int n = board.length;
+        int m = board[0].length;
+        
+        for (int x = Math.max(0, i - 1); x <= Math.min(n - 1, i + 1); x++) {
+            for (int y = Math.max(0, j - 1); y <= Math.min(m - 1, j + 1); y++) {
+                sum += board[x][y] & 1;
+            }
+        }
+        sum -= board[i][j] & 1;
+        return sum;
+    }
+}
