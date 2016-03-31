@@ -49,3 +49,36 @@ public class Solution {
         
     }
 }
+
+
+public class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int rows = triangle.size();
+        int[] pathSum = new int[rows];
+        
+        pathSum[0] = triangle.get(0).get(0);
+        
+        for (int row = 1; row < rows; row++) {
+            List<Integer> thisRow = triangle.get(row);
+            
+            // last one
+            pathSum[row] = pathSum[row - 1] + thisRow.get(row);
+            
+            // middle
+            for (int index = row - 1; index >0; index--) {
+                pathSum[index] = thisRow.get(index) + Math.min(pathSum[index - 1], pathSum[index]);
+            }
+            
+            // first one
+            pathSum[0] = thisRow.get(0) + pathSum[0];
+        }
+        
+        // find min
+        int min = Integer.MAX_VALUE;
+        for (int num : pathSum) {
+            min = Math.min(num, min);
+        }
+    
+        return min;
+    }
+}
