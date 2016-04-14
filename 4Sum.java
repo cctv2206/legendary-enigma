@@ -21,14 +21,13 @@ public class Solution {
         Arrays.sort(nums);
         int length = nums.length;
         for (int i = 0; i < length - 3; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) {
-                continue;
+            if (nums[i] << 2 > target) {
+                break;
             }
             int threeSum = target - nums[i];
-
+            
             // three sum
             for (int j = i + 1; j < length - 2; j++) {
-                if (j > i + 1 && nums[j] == nums[j - 1]) continue;
                 int k = j + 1;
                 int l = length - 1;
                 while (k < l) {
@@ -46,11 +45,10 @@ public class Solution {
                         l--;
                         // while (k < l && nums[l] == nums[l + 1]) l--;
                     }
-                    
                 } // end while k < l
-                
+                while (j < length - 2 && nums[j] == nums[j + 1]) j++; // avoid duplicates
             } // end for j
-
+            while (i < length - 3 && nums[i] == nums[i + 1]) i++; // avoid duplicates
         } // end for i
 
         return result;
