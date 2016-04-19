@@ -35,3 +35,19 @@ public class Solution {
         return dummy.next;
     }
 }
+
+public class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        ListNode newHead = head.next;
+        ListNode rest = head.next.next;
+        
+        newHead.next = head;
+        head.next = swapPairs(rest);
+        
+        return newHead;
+    }
+}
