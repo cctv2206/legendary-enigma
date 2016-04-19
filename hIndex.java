@@ -34,3 +34,26 @@ public class Solution {
         return Math.min(citations[i], length - i);
     }
 }
+
+public class Solution {
+    public int hIndex(int[] citations) {
+        int length = citations.length;
+        int[] bucket = new int[length + 1];
+        for (int c : citations) {
+            if (c >= length) {
+                bucket[length]++;
+            } else {
+                bucket[c]++;
+            }
+        }
+        
+        int count = 0;
+        for (int i = length; i >= 0; i--) {
+            count += bucket[i];
+            if (count >= i) {
+                return i;
+            }
+        }
+        return 0;
+    }
+}
