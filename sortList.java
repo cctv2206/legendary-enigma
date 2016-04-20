@@ -66,3 +66,63 @@ public class Solution {
         return slow;
     }
 }
+
+
+// quick sort
+public class Solution {
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        ListNode cur = head.next;
+        
+        ListNode smallHead = new ListNode(0);
+        ListNode smallTail = smallHead;
+        
+        ListNode largeHead = new ListNode(0);
+        ListNode largeTail = largeHead;
+        
+        ListNode equal = head;
+        
+        while (cur != null) {
+            if (cur.val < head.val) {
+                smallTail.next = cur;
+                smallTail = smallTail.next;
+            } else if (cur.val > head.val){
+                largeTail.next = cur;
+                largeTail = largeTail.next;
+            } else {
+                equal.next = cur;
+                equal = equal.next;
+            }
+            cur = cur.next;
+        }
+        
+        smallTail.next = null;
+        largeTail.next = null;
+        equal.next = null;
+        
+        largeHead = largeHead.next;
+        smallHead = smallHead.next;
+        
+        return join(join(sortList(smallHead), head), sortList(largeHead));
+    }
+    
+    
+    // join two list, return head
+    public ListNode join(ListNode small, ListNode large) {
+        if (small == null) {
+            return large;
+        }
+        ListNode dummy = new ListNode(0);
+        dummy.next = small;
+        
+        while (small != null && small.next != null) {
+            small = small.next;
+        }
+        small.next = large;
+        return dummy.next;
+    }
+    
+}
