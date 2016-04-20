@@ -19,13 +19,10 @@ return 4->5->1->2->3->NULL.
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
         if (head == null) {
-            return null;
+            return head;
         }
         
-        ListNode newHead = head;
         ListNode ahead = head;
-        ListNode pre = new ListNode(0);
-        pre.next = newHead;
         int count = 1;
         
         // count list
@@ -34,27 +31,19 @@ public class Solution {
             count++;
         }
         
-        k = k % count;
+        k %= count;
         
         if (k == 0) {
             return head;
         }
-
-        ahead = head;
-        while (k > 1) {
-            ahead = ahead.next;
-            k--;
-        }
-
-        while (ahead.next != null) {
-            ahead = ahead.next;
-            newHead = newHead.next;
-            pre = pre.next;
-        }
         
+        // make a circle
         ahead.next = head;
-        pre.next = null;
-        
-        return newHead;
+        for (int i = 0; i < count - k; i++) {
+            ahead = ahead.next;
+        }
+        head = ahead.next;
+        ahead.next = null;
+        return head;
     }
 }
