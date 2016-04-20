@@ -21,9 +21,6 @@ public class Solution {
         if (head == null) {
             return null;
         }
-        if (k == 0) {
-            return head;
-        }
         
         ListNode newHead = head;
         ListNode ahead = head;
