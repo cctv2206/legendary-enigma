@@ -30,15 +30,10 @@ public class Solution {
     
     // merge two list, return head
     public ListNode merge(ListNode node1, ListNode node2) {
-        if (node1 == null) {
-            return node2;
-        } else if (node2 == null) {
-            return node1;
-        }
-        
+     
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
-        
+
         while (node1 != null && node2 != null) {
             if (node1.val < node2.val) {
                 cur.next = node1;
@@ -49,13 +44,9 @@ public class Solution {
             }
             cur = cur.next;
         }
-        
-        if (node1 != null) {
-            cur.next = node1;
-        } else {
-            cur.next = node2;
-        }
-        
+
+        cur.next = (node1 == null) ? node2 : node1;
+
         return dummy.next;
     }
     
