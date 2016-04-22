@@ -56,3 +56,35 @@ public class Solution {
         return res.toString();
     }
 }
+
+
+public class Solution {
+    public String simplifyPath(String path) {
+        Stack<String> newPath = new Stack<String>();
+        String[] filenames = path.split("/");
+        for (String name : filenames) {
+            if (name.equals("") || name.equals(".")) {
+                continue;
+            }
+            if (name.equals("..")) {
+                if (!newPath.isEmpty()) {
+                    newPath.pop();
+                }
+            } else {
+                newPath.push(name);
+            }
+        }
+        
+        if (newPath.isEmpty()) {
+            return "/";
+        }
+        
+        List<String> list = new ArrayList<String>(newPath);
+        StringBuilder res = new StringBuilder();
+        for (String name : list) {
+            res.append("/").append(name);
+        }
+        
+        return res.toString();
+    }
+}
