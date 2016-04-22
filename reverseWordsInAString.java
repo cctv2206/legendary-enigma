@@ -34,3 +34,24 @@ public class Solution {
         return res.length() == 0 ? "" : res.substring(0, res.length() - 1);
     }
 }
+
+public class Solution {
+    public String reverseWords(String s) {
+        char[] charArray = s.toCharArray();
+        int end;
+        StringBuilder res = new StringBuilder();
+        for (int i = charArray.length - 1; i >= 0; i--) {
+        	if (charArray[i] == ' ') {
+        		continue;
+        	}
+        	end = i;
+        	while (i >= 0 && charArray[i] != ' ') {
+        		i--;
+        	}
+        	res.append(s.substring(i + 1, end + 1)).append(" ");
+        	
+        }
+
+        return res.toString().trim();
+    }
+}
