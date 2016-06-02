@@ -35,3 +35,33 @@ public class Solution {
         return Arrays.copyOfRange(res, 0, index);
     }
 }
+
+
+public class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        
+        if (nums1.length == 0 || nums2.length == 0) return new int[0];
+        
+        Set<Integer> numsSet = new HashSet<Integer>();
+        for (int i = 0; i < nums1.length; i++) {
+            numsSet.add(nums1[i]);
+        }
+        
+        // use set
+        Set<Integer> res = new HashSet<Integer>();
+        for (int i = 0; i < nums2.length; i++) {
+            if (numsSet.contains(nums2[i])) {
+                res.add(nums2[i]);
+            }
+        }
+        
+        int[] result = new int[res.size()];
+        int i = 0;
+        for (Integer num : res) {
+            result[i] = num;
+            i++;
+        }
+        
+        return result;
+    }
+}
