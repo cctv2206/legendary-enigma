@@ -47,3 +47,34 @@ public class Solution {
         return res;
     }
 }
+
+public class Solution {
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        
+        Map<Integer, Integer> numToCount = new HashMap<Integer, Integer>();
+        
+        for (int num : nums) {
+            if (numToCount.containsKey(num)) {
+                numToCount.put(num, numToCount.get(num) + 1);
+            } else {
+                numToCount.put(num, 1);
+            }
+        }
+        
+        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
+        
+        for (Map.Entry<Integer, Integer> entry : numToCount.entrySet()) {
+            pq.offer(entry);
+            if (pq.size() > k) pq.poll();
+        }
+        
+        List<Integer> res = new ArrayList<Integer>();
+        
+        while (!pq.isEmpty()) {
+            res.add(0, pq.poll().getKey());
+        }
+        
+        return res;
+
+    }
+}
