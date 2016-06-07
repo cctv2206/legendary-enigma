@@ -34,3 +34,24 @@ public class Solution {
         
     }
 }
+
+public class Solution {
+    public void moveZeroes(int[] nums) {
+        int index = 0;
+        int nonZero = 0;
+        
+        while (nonZero < nums.length) {
+            
+            while (nonZero < nums.length && nums[nonZero] == 0) nonZero++;
+            
+            if (nonZero != index && nonZero < nums.length) {
+                nums[index] = nums[nonZero];
+                nums[nonZero] = 0;
+            }
+            
+            index++;
+            nonZero++;
+            
+        }
+    }
+}
