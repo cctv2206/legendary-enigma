@@ -20,3 +20,18 @@ public class Solution {
         return false;
     }
 }
+
+
+public class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        
+        Set<Integer> numSet = new HashSet<Integer>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (!numSet.add(nums[i])) return true;
+            if (numSet.size() > k) numSet.remove(nums[i - k]);
+        }
+        
+        return false;
+    }
+}
