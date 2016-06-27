@@ -40,3 +40,31 @@ public class Solution {
         return ans;
     }
 }
+
+
+public class Solution {
+    public int threeSumSmaller(int[] nums, int target) {
+        Arrays.sort(nums);
+        int ans = 0;
+        int i = 0;
+        while (i < nums.length - 2) {
+            
+            // if (nums[i] > 0 && nums[i] >= target) break;
+            
+            int j = i + 1;
+            int k = nums.length - 1;
+            
+            while (j < k) {
+                if (nums[i] + nums[j] + nums[k] < target) {
+                    ans += k - j;
+                    j++;
+                } else {
+                    k--;
+                }
+            } // end while j
+            i++;
+            
+        } // end while i
+        return ans;
+    }
+}
