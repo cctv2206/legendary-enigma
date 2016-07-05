@@ -40,3 +40,38 @@ public class Solution {
         }
     }
 }
+
+
+
+public class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        List<Integer> solution = new ArrayList<Integer>();
+        
+        helper(candidates, target, 0, result, solution);
+        
+        return result;
+        
+    }
+    
+    private void helper(int[] candidates, int target, int pos, List<List<Integer>> result, List<Integer> solution) {
+        if (target == 0) {
+            result.add(new ArrayList<Integer>(solution));
+            return;
+        } 
+        
+        
+        for (int i = pos; i < candidates.length; i++) {
+            if (candidates[i] > target) {
+                return;
+            }
+            
+            solution.add(candidates[i]);
+            helper(candidates, target - candidates[i], i, result, solution);
+            solution.remove(solution.size() - 1);
+            
+        }
+        
+    }
+}
