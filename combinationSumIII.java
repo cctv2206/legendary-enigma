@@ -47,3 +47,32 @@ public class Solution {
         }
     }
 }
+
+public class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        List<Integer> path = new ArrayList<Integer>();
+        helper(n, k, 1, result, path);
+        return result;
+        
+    }
+    
+    private void helper(int target, int level, int num, List<List<Integer>> result, List<Integer> path) {
+        if (level == 0) {
+            if (target == 0) {
+                result.add(new ArrayList<Integer>(path));
+            }
+            return;
+        }
+        
+        for (int i = num; i <= 9; i++) {
+            if (i > target) {
+                return;
+            }
+            
+            path.add(i);
+            helper(target - i, level - 1, i + 1, result, path);
+            path.remove(path.size() - 1);
+        }
+    }
+}
