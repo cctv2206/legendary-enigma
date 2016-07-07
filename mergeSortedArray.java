@@ -13,3 +13,37 @@ public class Solution {
         Arrays.sort(nums1);
     }
 }
+
+public class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int[] nums3 = new int[m];
+        for (int i = 0; i < m; i++) {
+            nums3[i] = nums1[i];
+        }
+        
+        int p2 = 0;
+        int p3 = 0;
+        int i = 0;
+        while (p2 < n && p3 < m) {
+            if (nums2[p2] < nums3[p3]) {
+                nums1[i] = nums2[p2];
+                p2++;
+            } else {
+                nums1[i] = nums3[p3];
+                p3++;
+            }
+            i++;
+        }
+        
+        while (p2 < n) {
+            nums1[i] = nums2[p2];
+            i++;
+            p2++;
+        }
+        while (p3 < m) {
+            nums1[i] = nums3[p3];
+            i++;
+            p3++;
+        }
+    }
+}
