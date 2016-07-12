@@ -47,3 +47,23 @@ public class Solution {
         return paths[m - 1][n - 1];
     }
 }
+
+public class Solution {
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        if (obstacleGrid.length == 0 || obstacleGrid[0].length == 0) return 0;
+        
+        int length = obstacleGrid[0].length;
+        int[] path = new int[length];
+        path[0] = 1;
+        for (int[] row : obstacleGrid) {
+            for (int i = 0; i < length; i++) {
+                if (row[i] == 1) {
+                    path[i] = 0;
+                } else if (i > 0) {
+                    path[i] += path[i - 1];
+                }
+            }
+        }
+        return path[length - 1];
+    }
+}
