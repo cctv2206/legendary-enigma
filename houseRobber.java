@@ -34,3 +34,21 @@ public class Solution {
         return money[length];
     }
 }
+
+public class Solution {
+    public int rob(int[] nums) {
+        int length = nums.length;
+        if (length == 0) return 0;
+        
+        int lastHouse = 0;
+        int thisHouse = nums[0];
+        int nextHouse;
+        
+        for (int i = 1; i < length; i++) {
+            nextHouse = Math.max(nums[i] + lastHouse, thisHouse);
+            lastHouse = thisHouse;
+            thisHouse = nextHouse;
+        }
+        return thisHouse;
+    }
+}
