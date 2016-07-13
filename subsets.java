@@ -43,3 +43,24 @@ public class Solution {
         set.remove(set.size() - 1);
     }
 }
+
+public class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> set = new ArrayList<Integer>();
+        helper(res, set, nums, 0);
+        return res;
+    }
+    
+    private void helper(List<List<Integer>> res, List<Integer> set, int[] nums, int pos) {
+        if (pos <= nums.length) {
+            res.add(new ArrayList<Integer>(set));
+        }
+        
+        for (int i = pos; i < nums.length; i++) {
+            set.add(nums[i]);
+            helper(res, set, nums, i + 1);
+            set.remove(set.size() - 1);
+        }
+    }
+}
