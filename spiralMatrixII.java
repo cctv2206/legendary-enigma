@@ -84,3 +84,49 @@ public class Solution {
         return result;
     }
 }
+
+public class Solution {
+    public int[][] generateMatrix(int n) {
+        if (n <= 0) return new int[0][0];
+        int[][] res = new int[n][n];
+        
+        int num = 1;
+        int rowStart = 0;
+        int rowEnd = n - 1;
+        int colStart = 0;
+        int colEnd = n - 1;
+        
+        while (rowStart <= rowEnd && colStart <= colEnd) {
+            // go right
+            for (int i = colStart; i <= colEnd; i++) {
+                res[rowStart][i] = num;
+                num++;
+            }
+            rowStart++;
+            
+            // go down
+            for (int i = rowStart; i <= rowEnd; i++) {
+                res[i][colEnd] = num;
+                num++;
+            }
+            colEnd--;
+            
+            // go left
+            for (int i = colEnd; i >= colStart; i--) {
+                res[rowEnd][i] = num;
+                num++;
+            }
+            rowEnd--;
+            
+            // go up
+            for (int i = rowEnd; i >= rowStart; i--) {
+                res[i][colStart] = num;
+                num++;
+            }
+            colStart++;
+            
+        }
+        
+        return res;
+    }
+}
