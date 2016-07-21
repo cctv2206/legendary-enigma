@@ -27,3 +27,27 @@ public class Solution {
         return grid[rows - 1][cols - 1];
     }
 }
+
+
+public class Solution {
+    public int minPathSum(int[][] grid) {
+        
+        if (grid.length == 0 || grid[0].length == 0) return 0;
+        
+        int cols = grid[0].length;
+        
+        int[] dp = grid[0];
+        for (int i = 1; i < cols; i++) {
+            dp[i] += dp[i - 1];
+        }
+        
+        for (int row = 1; row < grid.length; row++) {
+            dp[0] += grid[row][0];
+            for (int i = 1; i < cols; i++) {
+                dp[i] = grid[row][i] + Math.min(dp[i - 1], dp[i]);
+            }
+        }
+        
+        return dp[cols - 1];
+    }
+}
