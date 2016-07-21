@@ -155,3 +155,50 @@ public class Solution {
         return sum;
     }
 }
+
+
+public class Solution {
+    public void gameOfLife(int[][] board) {
+        if (board.length == 0 || board[0].length == 0) {
+            return;
+        }
+        int row = board.length;
+        int col = board[0].length;
+        
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                helper(board, i, j, row, col);
+            }
+        }
+        
+        // shift bits
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                board[i][j] >>= 1;
+            }
+        }
+    }
+    
+    private void helper(int[][] board, int i, int j, int row, int col) {
+        int count = 0;
+        
+        for (int n = Math.max(0, i - 1); n <= Math.min(row - 1, i + 1); n++) {
+            for (int m = Math.max(0, j - 1); m <= Math.min(col - 1, j + 1); m++) {
+                count += board[n][m] & 1;
+            }
+        }
+        
+        count -= board[i][j] & 1;
+        
+        if (board[i][j] == 1) {
+            if (count == 2 || count == 3) {
+                board[i][j] = 3;
+            }
+        } else {
+            if (count == 3) {
+                board[i][j] = 2;
+            }
+        }
+        
+    }
+}
