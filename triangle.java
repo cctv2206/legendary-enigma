@@ -82,3 +82,35 @@ public class Solution {
         return min;
     }
 }
+
+
+public class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        if (triangle.size() == 0 || triangle.get(0).size() == 0) return 0;
+        
+        int[] lastRow = new int[triangle.size()];
+        int[] thisRow = new int[triangle.size()];
+        
+        lastRow[0] = triangle.get(0).get(0);
+        
+        for (int i = 1; i < triangle.size(); i++) {
+            List<Integer> row = triangle.get(i);
+            thisRow[0] = lastRow[0] + row.get(0);
+            for (int j = 1; j < row.size() - 1; j++) {
+                thisRow[j] = row.get(j) + Math.min(lastRow[j], lastRow[j - 1]);
+            }
+            thisRow[row.size() - 1] = lastRow[row.size() - 2] + row.get(row.size() - 1);
+            
+            int[] temp = thisRow;
+            thisRow = lastRow;
+            lastRow = temp;
+        }
+        
+        int res = Integer.MAX_VALUE;
+        for (int num : lastRow) {
+            if (num < res) res = num;
+        }
+        
+        return res;
+    }
+}
