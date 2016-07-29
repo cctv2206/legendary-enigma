@@ -114,3 +114,30 @@ public class Solution {
         return res;
     }
 }
+
+public class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        if (triangle.size() == 0 || triangle.get(0).size() == 0) return 0;
+        
+        int[] dp = new int[triangle.size()];
+        dp[0] = triangle.get(0).get(0);
+        
+        for (int i = 1; i < triangle.size(); i++) {
+            List<Integer> row = triangle.get(i);
+            dp[i] = dp[i - 1] + row.get(i);
+            
+            for (int j = i - 1; j > 0; j--) {
+                dp[j] = row.get(j) + Math.min(dp[j], dp[j - 1]);
+            }
+            
+            dp[0] += row.get(0);
+        }
+        
+        int res = Integer.MAX_VALUE;
+        for (int num : dp) {
+            if (num < res) res = num;
+        }
+        
+        return res;
+    }
+}
