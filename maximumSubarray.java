@@ -33,3 +33,17 @@ public class Solution {
         return result;
     }
 }
+
+
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        if (nums.length == 0) return 0;
+        int res = nums[0];
+        int max = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            max = Math.max(0, max) + nums[i];
+            res = Math.max(res, max);
+        }
+        return res;
+    }
+}
