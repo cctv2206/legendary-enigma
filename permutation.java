@@ -62,3 +62,30 @@ public class Solution {
     }
 }
 
+// same as the first solution
+public class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> solution = new ArrayList<Integer>();
+        
+        helper(res, solution, nums, 0);
+        
+        return res;
+        
+    }
+    
+    private void helper(List<List<Integer>> res, List<Integer> solution, int[] nums, int i) {
+        if (i == nums.length) {
+            res.add(solution);
+            return;
+        }
+        
+        for (int j = 0; j <= solution.size(); j++) {
+            List<Integer> temp = new ArrayList<Integer>(solution);
+            
+            temp.add(j, nums[i]);
+            
+            helper(res, temp, nums, i + 1);
+        }
+    }
+}
