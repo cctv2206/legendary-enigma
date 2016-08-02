@@ -68,3 +68,44 @@ public class Solution {
         }
     }
 }
+
+public class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+        helper(res, nums, 0);
+        
+        return res;
+    }
+    
+    private void helper(List<List<Integer>> res, int[] nums, int start) {
+        if (start == nums.length) {
+            List<Integer> solution = new ArrayList<Integer>();
+            for (int num : nums) {
+                solution.add(num);
+            }
+            res.add(solution);
+            return;
+        }
+        
+        helper(res, nums, start + 1);
+        Set<Integer> appeared = new HashSet<Integer>();
+        appeared.add(nums[start]);
+        
+        for (int j = start + 1; j < nums.length; j++) {
+            if (appeared.add(nums[j])) {
+                swap(nums, start, j);
+                helper(res, nums, start + 1);
+                swap(nums, start, j);
+            }
+            
+        }
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
+
