@@ -53,3 +53,37 @@ public class Solution {
         nums[m] = temp;
     }
 }
+
+
+public class Solution {
+    public void nextPermutation(int[] nums) {
+        int i = nums.length - 2;
+        
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+        
+        if (i >= 0) {
+            int j = i + 1;
+            while (j < nums.length && nums[j] > nums[i]) j++;
+            swap(nums, i, j - 1);
+        }
+        
+        flip(nums, i + 1, nums.length - 1);
+    }
+    
+    
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+    private void flip(int[] nums, int i, int j) {
+        while (i < j) {
+            swap(nums, i, j);
+            i++;
+            j--;
+        }
+    }
+}
