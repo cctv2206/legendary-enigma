@@ -89,3 +89,41 @@ public class Solution {
         }
     }
 }
+
+
+public class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+
+        helper(res, nums, 0);
+        
+        return res;
+        
+    }
+    
+    private void helper(List<List<Integer>> res, int[] nums, int start) {
+        if (start == nums.length) {
+            List<Integer> solution = new ArrayList<Integer>();
+            for (int num : nums) {
+                solution.add(num);
+            }
+            res.add(solution);
+            return;
+        }
+        
+        helper(res, nums, start + 1);
+        
+        for (int i = start + 1; i < nums.length; i++) {
+            swap(nums, start, i);
+            helper(res, nums, start + 1);
+            swap(nums, start, i);
+        }
+        
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
