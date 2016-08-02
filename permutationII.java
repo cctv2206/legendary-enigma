@@ -43,3 +43,28 @@ public class Solution {
         nums[m] = temp;
     }
 }
+
+// using HashSet, super slow
+public class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        Set<List<Integer>> res = new HashSet<List<Integer>>();
+        List<Integer> solution = new ArrayList<Integer>();
+        
+        helper(res, solution, nums, 0);
+        
+        return new ArrayList<List<Integer>>(res);
+    }
+    
+    private void helper(Set<List<Integer>> res, List<Integer> solution, int[] nums, int i) {
+        if (i == nums.length) {
+            res.add(solution);
+            return;
+        }
+        
+        for (int j = 0; j <= solution.size(); j++) {
+            List<Integer> temp = new ArrayList<Integer>(solution);
+            temp.add(j, nums[i]);
+            helper(res, temp, nums, i + 1);
+        }
+    }
+}
