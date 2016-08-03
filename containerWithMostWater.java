@@ -28,3 +28,31 @@ public class Solution {
         return res;
     }
 }
+
+
+public class Solution {
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int res = 0;
+        int area = 0;
+        while (left < right) {
+            int lh = height[left];
+            int rh = height[right];
+            if (lh > rh) {
+                area = (right - left) * rh;
+                while (left < right && height[right] <= rh) right--;
+                
+            } else {
+                area = (right - left) * lh;
+                while (left < right && height[left] <= lh) left++;
+            }
+            
+            if (area > res) {
+                res = area;
+            }
+        
+        }
+        return res;
+    }
+}
