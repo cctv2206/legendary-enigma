@@ -40,3 +40,16 @@ public class Solution {
         return pos;
     }
 }
+
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        int pos = 0;
+        for (int num : nums) {
+            if (pos < 2 || num > nums[pos - 2]) {
+                nums[pos] = num;
+                pos++;
+            }
+        }
+        return pos;
+    }
+}
