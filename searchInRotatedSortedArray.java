@@ -10,6 +10,52 @@ You may assume no duplicate exists in the array.
 
 */
 
+
+public class Solution {
+    public int search(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length - 1;
+        
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            
+            if (nums[start] < nums[end]) { // binary search
+                if (nums[mid] < target) {
+                    start = mid;
+                } else if (nums[mid] > target) {
+                    end = mid;
+                } else {
+                    return mid;
+                }
+            } else { // rotated sorted
+                if (nums[mid] >= nums[start]) {
+                    if (nums[start] <= target && target <= nums[mid]) {
+                        end = mid;
+                    } else {
+                        start = mid;
+                    }
+                } else {
+                    if (nums[mid] <= target && target <= nums[end]) {
+                        start = mid;
+                    } else {
+                        end = mid;
+                    }
+                }
+            }
+            
+        } // end while
+        
+        if (nums[start] == target) {
+            return start;
+        }
+        if (nums[end] == target) {
+            return end;
+        }
+        
+        return -1;
+    }
+}
+
 public class Solution {
     public int search(int[] nums, int target) {
         int start = 0;
