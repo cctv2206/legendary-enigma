@@ -64,6 +64,11 @@ public class Solution {
         
         int i = 0;
         while (i < nums.length - 3) {
+            
+            if (nums[i] << 2 > target) { // nums[i] * 4
+                break;
+            }
+            
             int j = i + 1;
             while (j < nums.length - 2) {
                 
