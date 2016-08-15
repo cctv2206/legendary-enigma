@@ -29,3 +29,30 @@ public class Solution {
         return result != Integer.MAX_VALUE ? result : 0;
     }
 }
+
+public class Solution {
+    public int minSubArrayLen(int s, int[] nums) {
+        int res = nums.length + 1;
+        int left = 0;
+        int right = 0;
+        int sum = 0;
+        
+        while (right < nums.length) {
+            sum += nums[right];
+            right++;
+            
+            while (sum >= s) {
+                res = Math.min(res, right - left);
+                
+                sum -= nums[left];
+                left++;
+            }
+        }
+        
+        
+        if (res > nums.length) {
+            return 0;
+        }
+        return res;
+    }
+}
