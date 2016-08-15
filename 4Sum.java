@@ -54,3 +54,48 @@ public class Solution {
         return result;
     }
 }
+
+
+public class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+        int i = 0;
+        while (i < nums.length - 3) {
+            int j = i + 1;
+            while (j < nums.length - 2) {
+                
+                int k = j + 1;
+                int l = nums.length - 1;
+                
+                while (k < l) {
+                    int sum = nums[i] + nums[j] + nums[k] + nums[l];
+                    
+                    if (sum > target) {
+                        l--;
+                        while (k < l && nums[l] == nums[l + 1]) l--;
+                    } else if (sum < target) {
+                        k++;
+                        while (k < l && nums[k] == nums[k - 1]) k++;
+                    } else {
+                        res.add(Arrays.asList(nums[i], nums[j], nums[k], nums[l]));
+                        l--;
+                        while (k < l && nums[l] == nums[l + 1]) l--;
+                    }
+                    
+                }
+                
+                j++;
+                while (j < nums.length - 2 && nums[j] == nums[j - 1]) j++;
+            }
+            
+            i++;
+            while (i < nums.length - 3 && nums[i] == nums[i - 1]) i++;
+        }
+        
+        return res;
+        
+    }
+}
