@@ -38,3 +38,43 @@ public class Solution {
         return best;
     }
 }
+
+
+public class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        
+        int minDiff = Integer.MAX_VALUE;
+        int res = minDiff;
+        
+        for (int i = 0; i < nums.length - 2; i++) {
+            int j = i + 1;
+            int k = nums.length - 1;
+            
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                
+                int diff = Math.abs(sum - target);
+                
+                if (diff < minDiff) {
+                    res = sum;
+                    minDiff = diff;
+                }
+                
+                if (sum > target) {
+                    k--;
+                    while (j < k && nums[k] == nums[k + 1]) k--;
+                } else if (sum < target) {
+                    j++;
+                    while (j < k && nums[j] == nums[j - 1]) j++;
+                } else {
+                    return sum;
+                }
+                
+            }
+            
+        }
+        
+        return res;
+    }
+}
