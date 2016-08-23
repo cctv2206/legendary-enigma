@@ -13,6 +13,31 @@ The result can be in any order.
 
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> nums = new HashSet<Integer>();
+        List<Integer> res = new ArrayList<Integer>();
+        
+        for (int num : nums1) {
+            nums.add(num);
+        }
+        
+        for (int num : nums2) {
+            if (nums.contains(num)) {
+                res.add(num);
+                nums.remove(num);
+            }
+        }
+        
+        int[] arr = new int[res.size()];
+        for (int i = 0; i < res.size(); i++) {
+            arr[i] = res.get(i);
+        }
+        
+        return arr;
+    }
+}
+
+public class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
         
         if (nums1.length == 0 || nums2.length == 0) return new int[0];
         
