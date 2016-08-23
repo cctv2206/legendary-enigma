@@ -15,6 +15,38 @@ What if elements of nums2 are stored on disk, and the memory is limited such tha
 
 public class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
+        
+        List<Integer> intersection = new ArrayList<Integer>();
+        
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        
+        int i = 0;
+        int j = 0;
+        
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                i++;
+            } else if (nums1[i] > nums2[j]) {
+                j++;
+            } else {
+                intersection.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+        
+        int[] res = new int[intersection.size()];
+        for (int k = 0; k < intersection.size(); k++) {
+            res[k] = intersection.get(k);
+        }
+        
+        return res;
+    }
+}
+
+public class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
         Map<Integer, Integer> count = new HashMap<Integer, Integer>();
         List<Integer> intersection = new ArrayList<Integer>();
         
