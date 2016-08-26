@@ -18,10 +18,9 @@ public class Solution {
         Set<Integer> numSet = new HashSet<Integer>();
         
         while (n != 1) {
-            if (numSet.contains(n)) {
+            if (!numSet.add(n)) {
                 return false;
             }
-            numSet.add(n);
             
             int sum = 0;
             while (n > 0) {
