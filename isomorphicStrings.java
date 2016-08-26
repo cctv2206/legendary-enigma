@@ -20,6 +20,25 @@ You may assume both s and t have the same length.
 
 public class Solution {
     public boolean isIsomorphic(String s, String t) {
+
+        int[] charS = new int[256];
+        int[] charT = new int[256];
+        
+        for (int i = 0; i < s.length(); i++) {
+            if (charS[s.charAt(i)] != charT[t.charAt(i)]) {
+                return false;
+            }
+            
+            charS[s.charAt(i)] = i + 1;
+            charT[t.charAt(i)] = i + 1;
+        }
+        
+        return true;
+    }
+}
+
+public class Solution {
+    public boolean isIsomorphic(String s, String t) {
         if (s.length() != t.length()) {
             return false;
         }
