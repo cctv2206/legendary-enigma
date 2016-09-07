@@ -10,6 +10,40 @@ Your algorithm should run in O(n) complexity.
 
 */
 
+
+public class Solution {
+    public int longestConsecutive(int[] nums) {
+        Map<Integer, Integer> count = new HashMap<Integer, Integer>();
+        
+        int res = 0;
+        
+        for (int num : nums) {
+            if (!count.containsKey(num)) {
+                
+                int left = 0;
+                int right = 0;
+                
+                if (count.containsKey(num - 1)) {
+                    left = count.get(num - 1);
+                }
+                if (count.containsKey(num + 1)) {
+                    right = count.get(num + 1);
+                }
+                
+                int len = 1 + left + right;
+                
+                count.put(num, len);
+                count.put(num - left, len);
+                count.put(num + right, len);
+                
+                res = Math.max(res, len);
+            }
+        }
+        
+        return res;
+    }
+}
+
 public class Solution {
     public int longestConsecutive(int[] nums) {
         Map<Integer, Integer> count = new HashMap<Integer, Integer>();
