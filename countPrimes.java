@@ -41,6 +41,27 @@ private boolean isPrime(int num) {
 }
 */
 
+public class Solution {
+
+    public int countPrimes(int n) {
+        
+        int[] notPrime = new int[n];
+        
+        int count = 0;
+        
+        for (int i = 2; i < n; i++) {
+            if (notPrime[i] == 0) {
+                count++;
+                int p = i + i;
+                while (p < n) {
+                    notPrime[p] = 1;
+                    p += i;
+                }
+            }
+        }
+        return count;
+    }
+}
 
 public class Solution {
     
