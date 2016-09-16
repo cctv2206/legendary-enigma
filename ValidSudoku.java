@@ -4,6 +4,30 @@ Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.
 The Sudoku board could be partially filled, where empty cells are filled with the character '.'.
 */
 
+public class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        if (board.length != 9 || board[0].length != 9) {
+            return false;
+        }
+        
+        Set<String> numSet = new HashSet<String>();
+        
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char c = board[i][j];
+                if (c != '.') {
+                    if (!numSet.add(c + "row" + i) || !numSet.add(c + "col" + j) || !numSet.add(c + "s" + i / 3 + j / 3)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        return true;
+        
+    }
+}
+
 
 public class Solution {
     public boolean isValidSudoku(char[][] board) {
