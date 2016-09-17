@@ -31,7 +31,7 @@ public class Solution {
                     if (distance < 0) {
                         distance += 26;
                     }
-                    key += "" + distance;
+                    key += "," + distance;
                 }
             }
             
