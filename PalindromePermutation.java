@@ -15,6 +15,19 @@ If each character occurs even number of times, then it must be a palindrome. How
 
 public class Solution {
     public boolean canPermutePalindrome(String s) {
+        Set<Character> chars = new HashSet<Character>();
+        for (int i = 0; i < s.length(); i++) {
+            if (!chars.add(s.charAt(i))) {
+                chars.remove(s.charAt(i));
+            }
+        }
+        
+        return chars.size() == 0 || chars.size() == 1;
+    }
+}
+
+public class Solution {
+    public boolean canPermutePalindrome(String s) {
         int[] chars = new int[128];
         for (int i = 0; i < s.length(); i++) {
             chars[s.charAt(i)]++;
