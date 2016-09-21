@@ -21,6 +21,32 @@ For each point, make sure that it has a reflected point in the opposite side.
 
 public class Solution {
     public boolean isReflected(int[][] points) {
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        
+        Set<String> pointSet = new HashSet<String>();
+        
+        for (int[] point : points) {
+            max = Math.max(max, point[0]);
+            min = Math.min(min, point[0]);
+            
+            pointSet.add(point[0] + "," + point[1]);
+        }
+        
+        int sum = max + min;
+        
+        for (int[] point : points) {
+            if (!pointSet.contains((sum - point[0]) + "," + point[1])) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
+
+public class Solution {
+    public boolean isReflected(int[][] points) {
         if (points.length == 0) {
             return true;
         }
