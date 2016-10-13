@@ -20,6 +20,23 @@ One longest palindrome that can be built is "dccaccd", whose length is 7.
 
 public class Solution {
     public int longestPalindrome(String s) {
+        Set<Character> charSet = new HashSet<Character>();
+        int res = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (!charSet.add(s.charAt(i))) {
+                res += 2;
+                charSet.remove(s.charAt(i));
+            }
+        }
+        if (!charSet.isEmpty()) {
+            res++;
+        }
+        return res;
+    }
+}
+
+public class Solution {
+    public int longestPalindrome(String s) {
         if (s.length() == 0) {
             return 0;
         }
