@@ -12,6 +12,33 @@ Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer 
 
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
+        int left = 0;
+        int right = 0;
+        Set<Character> charSet = new HashSet<Character>();
+        int res = 0;
+        
+        while (right < s.length()) {
+            while (right < s.length() && charSet.add(s.charAt(right))) {
+                right++;
+            }
+            res = Math.max(res, right - left);
+            
+            if (right < s.length()) {
+                while (s.charAt(left) != s.charAt(right)) {
+                    charSet.remove(s.charAt(left));
+                    left++;
+                }
+                left++;
+                right++;
+            }
+        }
+        
+        return res;
+    }
+}
+
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
         HashSet<Character> letter = new HashSet<Character>();
         char[] sArray = s.toCharArray();
         int left = 0;
