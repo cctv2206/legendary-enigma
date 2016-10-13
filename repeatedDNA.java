@@ -15,6 +15,31 @@ Return:
 
 public class Solution {
     public List<String> findRepeatedDnaSequences(String s) {
+        Map<Character, Integer> toBit = new HashMap<Character, Integer>();
+        Set<Integer> seen = new HashSet<Integer>();
+        Set<String> res = new HashSet<String>();
+        
+        toBit.put('A', 0);
+        toBit.put('C', 1);
+        toBit.put('G', 2);
+        toBit.put('T', 3);
+        
+        for (int i = 0; i + 9 < s.length(); i++) {
+            int bits = 0;
+            for (int j = 0; j < 10; j++) {
+                bits <<= 2;
+                bits |= toBit.get(s.charAt(i + j));
+            }
+            if (!seen.add(bits)) {
+                res.add(s.substring(i, i + 10));
+            }
+        }
+        return new ArrayList<String>(res);
+    }
+}
+
+public class Solution {
+    public List<String> findRepeatedDnaSequences(String s) {
         Set<String> res = new HashSet<String>();
         Set<String> subStr = new HashSet<String>();
         
