@@ -18,6 +18,31 @@ All inputs will be in lower-case.
 
 public class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> groups = new HashMap<String, List<String>>();
+        for (String s : strs) {
+            String key = sortString(s);
+            if (!groups.containsKey(key)) {
+                groups.put(key, new ArrayList<String>());
+            }
+            groups.get(key).add(s);
+        }
+        
+        List<List<String>> res = new ArrayList<List<String>>();
+        for (List<String> group : groups.values()) {
+            res.add(group);
+        }
+        return res;
+    }
+    
+    public String sortString(String str) {
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);
+    }
+}
+
+public class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
         HashMap<String, List<String>> strMap = new HashMap<String, List<String>>();
         List<List<String>> result = new ArrayList<List<String>>();
         
