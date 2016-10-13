@@ -15,6 +15,22 @@ Return:
 
 public class Solution {
     public List<String> findRepeatedDnaSequences(String s) {
+        Set<String> res = new HashSet<String>();
+        Set<String> subStr = new HashSet<String>();
+        
+        for (int i = 0; i < s.length() - 9; i++) {
+            String str = s.substring(i, i + 10);
+            if (!subStr.add(str)) {
+                res.add(str);
+            }
+        }
+        
+        return new ArrayList<String>(res);
+    }
+}
+
+public class Solution {
+    public List<String> findRepeatedDnaSequences(String s) {
         Map<String, Integer> hashmap = new HashMap<String, Integer>();
         List<String> result = new ArrayList<String>();
         
