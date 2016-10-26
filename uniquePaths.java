@@ -10,6 +10,30 @@ How many possible unique paths are there?
 
 public class Solution {
     public int uniquePaths(int m, int n) {
+        if (m == 0 || n == 0) {
+            return 0;
+        }
+        
+        int[] row = new int[n];
+        
+        // first row
+        for (int i = 0; i < row.length; i++) {
+            row[i] = 1;
+        }
+        
+        // 2nd - last
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                row[j] += row[j - 1];
+            }
+        }
+        
+        return row[n - 1];
+    }
+}
+
+public class Solution {
+    public int uniquePaths(int m, int n) {
         if (m == 0 || n == 0) return 0;
         int [][] paths = new int[m][n];
         for (int i = 0; i < m; i++) {
