@@ -25,6 +25,43 @@ return its level order traversal as:
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Queue<TreeNode> curLevel = new LinkedList<TreeNode>();
+        
+        if (root == null) {
+            return result;
+        }
+        
+        curLevel.offer(root);
+        
+        while (!curLevel.isEmpty()) {
+            
+            int size = curLevel.size();
+            List<Integer> level = new ArrayList<Integer>();
+            
+            for (int i = 0; i < size; i++) {
+                
+                if (curLevel.peek().left != null) {
+                    curLevel.offer(curLevel.peek().left);
+                }
+                if (curLevel.peek().right != null) {
+                    curLevel.offer(curLevel.peek().right);
+                }
+                level.add(curLevel.poll().val);
+            }
+            result.add(level);
+        }
+        
+        return result;
+        
+    }
+}
+
+
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         
